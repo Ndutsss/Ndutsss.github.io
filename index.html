@@ -54,10 +54,38 @@
   <div id="dark-overlay"></div>
   <div id="info"></div>
 <h1 style="position: fixed; bottom: 10px; right: 10px; font-size: 18px; font-family: Arial, sans-serif; color: white; background: rgba(0, 0, 0, 0.4); padding: 6px 12px; border-radius: 8px; z-index: 9999;">
-  Create by Miko
+  Create by Nandutss Tamvann
 </h1>
   <button id="musicButton" disabled>Mainkan Musik 🎵</button>
   <div id="player"></div>
+  <script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  let player;
+  const starttime = 137; // Lagu mulai detik ke-137 (atur sesukamu)
+  const endtime = 219;   // Lagu berakhir detik ke-219 (atur sesukamu)
+     
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '0',
+      width: '0',
+      videoId: 'V_ID_KAMU', // GANTIKAN teks ini dengan 11 karakter ID video YouTube pilihanmu!
+      playerVars: {
+        autoplay: 1,
+        start: starttime,
+        end: endtime,
+        controls: 0,
+        loop: 1,
+        playlist: 'V_ID_KAMU' // Masukkan ID video yang sama di sini juga
+      },
+      events: {
+        onReady: function(e) {
+          e.target.setVolume(100); 
+          e.target.playVideo();
+        }
+      }
+    });
+  }
+</script>
   <script src="https://www.youtube.com/iframe_api"></script>
   <script>
     let player;
@@ -90,13 +118,6 @@
         }
       });
     };
-
-    document.getElementById('musicButton').addEventListener('click', () => {
-      if (player) {
-        player.playVideo();
-        document.getElementById('musicButton').style.display = 'none';
-      }
-    });
   </script>
 
   <script type="module" src="script.js"></script>
