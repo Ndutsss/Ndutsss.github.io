@@ -60,7 +60,7 @@
   <div id="player"></div>
   <script src="https://www.youtube.com/iframe_api"></script>
 
-<script>
+  <script>
     let player;
 
     window.onYouTubeIframeAPIReady = function() {
@@ -80,7 +80,7 @@
             btn.disabled = false;
             btn.innerText = "Mainkan Musik 🎵";
             
-            // Perintah memutar video saat tombol diklik
+            // Perintah klik untuk menyalakan lagu baru tanpa typo
             btn.addEventListener('click', () => {
               player.playVideo();
               btn.style.display = 'none';
