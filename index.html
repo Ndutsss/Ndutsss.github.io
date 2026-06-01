@@ -59,67 +59,42 @@
   <button id="musicButton" disabled>Mainkan Musik 🎵</button>
   <div id="player"></div>
   <script src="https://www.youtube.com/iframe_api"></script>
+```html
 <script>
   let player;
-  const starttime = 137; // Lagu mulai detik ke-137 (atur sesukamu)
-  const endtime = 219;   // Lagu berakhir detik ke-219 (atur sesukamu)
-     
-  function onYouTubeIframeAPIReady() {
+  
+  window.onYouTubeIframeAPIReady = function() {
     player = new YT.Player('player', {
       height: '0',
       width: '0',
-      videoId: 'V_ID_KAMU', // GANTIKAN teks ini dengan 11 karakter ID video YouTube pilihanmu!
+      videoId: 'd40MqGKB16E',
       playerVars: {
-        autoplay: 1,
-        start: starttime,
-        end: endtime,
+        autoplay: 0,       
         controls: 0,
         loop: 1,
-        playlist: 'V_ID_KAMU' // Masukkan ID video yang sama di sini juga
+        playlist: 'd40MqGKB16E'
       },
       events: {
-        onReady: function(e) {
-          e.target.setVolume(100); 
-          e.target.playVideo();
+        onReady: (event) => {
+          const btn = document.getElementById('musicButton');
+          btn.disabled = false;
+          btn.innerText = "Mainkan Musik 🎵";
+          
+          btn.addEventListener('click', () => {
+            player.playVideo();
+            btn.style.display = 'none'; 
+          });
+        },
+        onStateChange: (event) => {
+          if (event.data === YT.PlayerState.ENDED) {
+            player.seekTo(0); 
+          }
         }
       }
     });
-  }
+  };
 </script>
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <script>
-    let player;
-     const startTime = 227;
-    const endTime = 261;
-    window.onYouTubeIframeAPIReady = function() {
-      player = new YT.Player('player', {
-        height: '0',
-        width: '0',
-        videoId: 'd4OMqGKBl6E',
-        playerVars: {
-          autoplay: 0,
-          start: startTime,
-          end: endTime,
-          controls: 0,
-          loop: 1,
-          playlist: 'd4OMqGKBl6E'
-        },
-        events: {
-          onReady: () => {
-            const btn = document.getElementById('musicButton');
-            btn.disabled = false;
-            btn.innerText = "Mainkan Musik 🎵";
-          },
-          onStateChange: (event) => {
-            if (event.data === YT.PlayerState.ENDED) {
-              player.seekTo(90);
-            }
-          }
-        }
-      });
-    };
-  </script>
 
-  <script type="module" src="script.js"></script>
+<script type="module" src="script.js"></script>
 </body>
 </html>
